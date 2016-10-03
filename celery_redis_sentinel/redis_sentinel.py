@@ -215,4 +215,5 @@ def get_redis_via_sentinel(db,
         db=db,
         redis_class=redis_class,
         connection_pool_class=connection_pool_class,
+        **kwargs
     )

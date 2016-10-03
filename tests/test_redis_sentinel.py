@@ -34,9 +34,12 @@ def test_get_redis_via_sentinel():
         sentinels=['foo', 'bar'],
         service_name='master',
         sentinel_class=mock_sentinel,
+        password='hardpass'
     )
 
     assert result == mock_sentinel.return_value.master_for.return_value
+    assert 'db' in mock_sentinel.return_value.master_for.call_args[-1]
+    assert 'password' in mock_sentinel.return_value.master_for.call_args[-1]
 
 
 @mock.patch('time.sleep')
